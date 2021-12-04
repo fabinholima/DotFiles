@@ -1,0 +1,20 @@
+conky.config = {
+    out_to_x = false,
+    out_to_console = true,
+    short_units = true,
+    update_interval = 1
+  	
+}
+
+
+conky.text = [[\
+^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/keyboard.xbm) ^fg(\#000000)${exec xkb-switch} |\
+^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/upload.xbm) ^fg(\#000000)${upspeed eno1} | \
+^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/download.xbm) ^fg(\#000000)${downspeed eno1} | \
+^ca(4,amixer -c 1 set Master 5%+)^ca(5,amixer -c 1 set Master 5%-)^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/Volume.xbm) ^fg(\#000000)${exec amixer -c 1 get Master | awk '/Mono.+/ {print $6=="[off]"?$6:$4}' | tr -d '[]' } ^ca()^ca()| \
+^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/CPU2.xbm)^fg(\#000000) ${cpu} % | \
+^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/mem.xbm) ^fg(\#000000)${memperc } % |\
+^ca(1,~/.scripts/shell/calendario.sh)  ^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/calendar.xbm) ^fg(\#000000)${time %I:%M}^ca() |\
+ ^ca(1,user dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager.PowerOff boolean:false)^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/Poweroff.xbm) ^fg(\#000000)^ca()| \
+^fg(\#ba42c7)^i(/home/fabio/.scripts/icons/Gentoo.xbm) ^fg(\#000000)
+]]
